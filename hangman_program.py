@@ -22,12 +22,16 @@ for letter in chosen_word:
 print(computer, hangman, keyboard)
 
 while lives != 0 and victory != 1:
-    if lives >= 6:
+    if lives > 6:
         print(stages[6])
+        if lives > 7:
+            print(f'You have {lives - 6} extra lives.')
+        else:
+            print(f'You only have one more extra life')
     else:
-        if lives == 5:
-            print('No more free lives.')
         print(stages[lives])
+        if lives == 6:
+            print('No more extra lives.')
     print(display.replace('', ' ')[1:-1].upper())
     guess = input('\nGuess a letter: ').lower()
 
@@ -45,8 +49,8 @@ while lives != 0 and victory != 1:
                     print(display.replace('', ' ')[1:-1].upper())
                     print(f'\nYou won the game. The word was: {chosen_word}.\n')
                     victory = 1
+                    
     else:
-        
         print(f'"{guess}" is not in the chosen word.\n')
         letter_list.append(guess)
         lives -= 1
